@@ -12,26 +12,31 @@
 
                 if (isset($data["partial"]) && !empty($data["partial"])) {
                     $sql = "
-                        SELECT
-                            q.id,
-                            q.description AS 'question',
-                            q.code,
-                            GROUP_CONCAT(a.description ORDER BY a.id) AS 'answers',
-                            MAX(CASE WHEN a.correct_answer = 1 THEN a.ans_number ELSE 0 END) - 1 AS 'correctAnswer'
-                        FROM
-                            (
-                                SELECT *,
-                                    (@row_number:=CASE WHEN @question_id = question_id THEN @row_number + 1 ELSE 1 END) AS ans_number,
-                                    @question_id:=question_id
-                                FROM answers a,
-                                    (SELECT @row_number:=0, @question_id:=NULL) r
-                                ORDER BY a.question_id, a.id
-                            ) a
-                        JOIN questions q ON q.id = a.question_id
-                        join degrees d on d.id = q.degree_id and upper(d.description) = upper(:degree)
-                        join topics t on t.id = q.topic_id and upper(t.description) = upper(:topic)
-                        and partial = :partial
-                        GROUP BY q.id;
+                    SELECT
+                        q.id,
+                        q.description AS 'question',
+                        q.code,
+                        GROUP_CONCAT(a.description ORDER BY a.random_order) AS 'answers',
+                        MAX(CASE WHEN a.correct_answer = 1 THEN a.ans_number ELSE 0 END) - 1 AS 'correctAnswer'
+                    FROM
+                        (
+                            SELECT *,
+                                    (@row_number:=CASE WHEN @prev_question_id = question_id THEN @row_number + 1 ELSE 1 END) AS ans_number,
+                                    @prev_question_id:=question_id
+                            FROM
+                                (
+                                    SELECT *,
+                                            RAND() AS random_order
+                                    FROM answers  -- ejemplo para la pregunta con id=1
+                                    ORDER BY question_id, random_order
+                                ) as rand_ordered_answers,
+                                (SELECT @row_number:=0, @prev_question_id:=NULL) r
+                        ) a
+                    JOIN questions q ON q.id = a.question_id
+                    join degrees d on d.id = q.degree_id and degree_id = :degree
+                    join topics t on t.id = q.topic_id and topic_id = :topic
+                    and partial = :partial
+                    GROUP BY q.id;
                     ";  
                     $stmt = Conexion::conectar()->prepare($sql);
                     $stmt->bindParam(":partial", $partial, PDO::PARAM_STR);
@@ -39,25 +44,30 @@
                     $stmt->bindParam(":topic", $topic, PDO::PARAM_STR);
                 }else{
                     $sql = "
-                        SELECT
-                            q.id,
-                            q.description AS 'question',
-                            q.code,
-                            GROUP_CONCAT(a.description ORDER BY a.id) AS 'answers',
-                            MAX(CASE WHEN a.correct_answer = 1 THEN a.ans_number ELSE 0 END) - 1 AS 'correctAnswer'
-                        FROM
-                            (
-                                SELECT *,
-                                    (@row_number:=CASE WHEN @question_id = question_id THEN @row_number + 1 ELSE 1 END) AS ans_number,
-                                    @question_id:=question_id
-                                FROM answers a,
-                                    (SELECT @row_number:=0, @question_id:=NULL) r
-                                ORDER BY a.question_id, a.id
-                            ) a
-                        JOIN questions q ON q.id = a.question_id
-                        join degrees d on d.id = q.degree_id and upper(d.description) = upper(:degree)
-                        join topics t on t.id = q.topic_id and upper(t.description) = upper(:topic)
-                        GROUP BY q.id;
+                    SELECT
+                        q.id,
+                        q.description AS 'question',
+                        q.code,
+                        GROUP_CONCAT(a.description ORDER BY a.random_order) AS 'answers',
+                        MAX(CASE WHEN a.correct_answer = 1 THEN a.ans_number ELSE 0 END) - 1 AS 'correctAnswer'
+                    FROM
+                        (
+                            SELECT *,
+                                    (@row_number:=CASE WHEN @prev_question_id = question_id THEN @row_number + 1 ELSE 1 END) AS ans_number,
+                                    @prev_question_id:=question_id
+                            FROM
+                                (
+                                    SELECT *,
+                                            RAND() AS random_order
+                                    FROM answers  -- ejemplo para la pregunta con id=1
+                                    ORDER BY question_id, random_order
+                                ) as rand_ordered_answers,
+                                (SELECT @row_number:=0, @prev_question_id:=NULL) r
+                        ) a
+                    JOIN questions q ON q.id = a.question_id
+                    join degrees d on d.id = q.degree_id and degree_id = :degree
+                    join topics t on t.id = q.topic_id and topic_id = :topic
+                    GROUP BY q.id;
                     ";
                     $stmt = Conexion::conectar()->prepare($sql);
                     $stmt->bindParam(":degree", $degree, PDO::PARAM_STR);

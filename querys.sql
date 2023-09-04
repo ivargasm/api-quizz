@@ -36,6 +36,26 @@ create table topics(
     constraint fk_topic_degree foreign key (degree_id) references degrees(id)
 )
 
+create table teachers(
+    id int not null auto_increment,
+    name varchar(250) not null,
+    last_name varchar(250) not null,
+    created_at date,
+    updated_at date,
+    constraint pk_teacher_id primary key (id)
+);
+
+create table teachers_topics(
+    id int not null auto_increment,
+    teacher_id int not null,
+    topic_id int not null,
+    created_at date,
+    updated_at date,
+    constraint pk_teacher_topic_id primary key (id),
+    constraint fk_teacher_topic_teacher foreign key (teacher_id) references teachers(id),
+    constraint fk_teacher_topic_topic foreign key (topic_id) references topics(id)
+);
+
 create table questions(
     id int not null auto_increment,
     description varchar(500) not null,

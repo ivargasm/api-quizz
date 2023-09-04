@@ -23,7 +23,26 @@
 
                 
             }
-        } else{
+        } else if(array_filter($arrayRutas)[2] == "degrees"){
+            // validar metodo de entrada get
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
+
+                $degrees = new DegreesController();
+                $degrees -> index($arrayRutas);
+
+                
+            }
+        } else if(array_filter($arrayRutas)[2] == "topics"){
+            // validar metodo de entrada get
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
+
+                $topics = new TopicsController();
+                $topics -> index($arrayRutas);
+
+                
+            }
+        }
+        else{
             $json=array(            
                 "rutas"=>array_filter($arrayRutas),
                 "detalle"=>"no encontrado 404"

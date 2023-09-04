@@ -8,6 +8,10 @@
     require_once "controllers/views.controller.php";
     require_once "controllers/questions.controller.php";
     require_once "models/questions.model.php";
+    require_once "controllers/degrees.controller.php";
+    require_once "models/degrees.model.php";
+    require_once "controllers/topics.controller.php";
+    require_once "models/topics.model.php";
 
     $ruta = new ViewsController();
     $ruta -> index();
