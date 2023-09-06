@@ -3,6 +3,7 @@
     $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
     var_dump($_SERVER['REQUEST_URI']);
+    echo array_filter($arrayRutas);
 
     // validar si se envio algo a la url
     if(count(array_filter($arrayRutas)) == 1){
