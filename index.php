@@ -1,7 +1,7 @@
 <?php
 
-    header("Access-Control-Allow-Origin: http://localhost:5173");  // permite las solicitudes solo desde http://localhost:5173
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE"); // los métodos que quieres permitir
+    header("Access-Control-Allow-Origin: *");  // permite las solicitudes solo desde http://localhost:5173
+    header("Access-Control-Allow-Methods: GET"); // los métodos que quieres permitir
     header("Access-Control-Allow-Headers: Content-Type"); // otros encabezados que desees permitir
 
 
