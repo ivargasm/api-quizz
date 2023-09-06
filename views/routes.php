@@ -2,6 +2,8 @@
 
     $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
+    echo $arrayRutas;
+
     // validar si se envio algo a la url
     if(count(array_filter($arrayRutas)) == 1){
         $json=array(            
