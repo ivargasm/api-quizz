@@ -16,7 +16,7 @@
                         q.id,
                         q.description AS 'question',
                         q.code,
-                        GROUP_CONCAT(a.description ORDER BY a.random_order) AS 'answers',
+                        GROUP_CONCAT(a.description ORDER BY a.random_order SEPARATOR '|') AS 'answers',
                         MAX(CASE WHEN a.correct_answer = 1 THEN a.ans_number ELSE 0 END) - 1 AS 'correctAnswer'
                     FROM
                         (
@@ -48,7 +48,7 @@
                         q.id,
                         q.description AS 'question',
                         q.code,
-                        GROUP_CONCAT(a.description ORDER BY a.random_order) AS 'answers',
+                        GROUP_CONCAT(a.description ORDER BY a.random_order SEPARATOR '|') AS 'answers',
                         MAX(CASE WHEN a.correct_answer = 1 THEN a.ans_number ELSE 0 END) - 1 AS 'correctAnswer'
                     FROM
                         (

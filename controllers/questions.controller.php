@@ -19,7 +19,7 @@
             );
 
             foreach ($quizz as $key => $value) {
-                $answersArray = explode(',', $value['answers']);
+                $answersArray = explode('|', $value['answers']);
                 $value['answers'] = $answersArray;
                 $quizz[$key] = $value;
             }
