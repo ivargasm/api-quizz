@@ -1,8 +1,7 @@
 <?php
 
-    $arrayRutas = explode("https://api-quizz-production.up.railway.app", $_SERVER['REQUEST_URI']);
-
-    echo $arrayRutas;
+    $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
+    echo $_SERVER['REQUEST_URI'];
 
     // validar si se envio algo a la url
     if(count(array_filter($arrayRutas)) == 1){
