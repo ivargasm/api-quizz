@@ -1,6 +1,6 @@
 <?php
 
-    $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
+    $arrayRutas = explode("https://api-quizz-production.up.railway.app", $_SERVER['REQUEST_URI']);
 
     echo $arrayRutas;
 
