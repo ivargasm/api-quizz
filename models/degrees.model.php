@@ -5,6 +5,7 @@
     class DegreesModel{
 
         static public function getDegrees(){
+            print_r("entre al modelo");
 
             $sql = "SELECT id as 'value', description as 'label' FROM degrees";
 
