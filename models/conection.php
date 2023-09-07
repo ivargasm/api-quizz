@@ -1,22 +1,22 @@
 <?php
 
+    $rootDirectory = $_SERVER['DOCUMENT_ROOT'] . '/api-quizz/';
+    require $rootDirectory . 'vendor/autoload.php';  // Asegúrate de incluir el autoload de Composer al inicio de tu script
+
+    // Carga las variables de entorno desde .env
+    $dotenv = Dotenv\Dotenv::createImmutable($rootDirectory);
+    $dotenv->load();
+
     class Conexion{
 
         static public function conectar(){
 
-            // $DB_HOST = getenv('DB_HOST');
             $DB_HOST = $_ENV['DB_HOST'];
-            $DB_NAME = getenv('DB_NAME');
-            $DB_USER = getenv('DB_USER');
-            $DB_PASS = getenv('DB_PASS');  // Si has definido la variable de entorno, descomenta esta línea
-            // $DB_PASS = "";
-            $DB_PORT = getenv('DB_PORT');
+            $DB_NAME = $_ENV['DB_NAME'];
+            $DB_USER = $_ENV['DB_USER'];
+            $DB_PASS = $_ENV['DB_PASS'];
+            $DB_PORT = $_ENV['DB_PORT'];
 
-            print_r($DB_HOST);
-            print_r($DB_NAME);
-            print_r($DB_USER);
-            print_r($DB_PASS);
-            print_r($DB_PORT);
 
             try {
                 $link = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME;port=$DB_PORT", $DB_USER, $DB_PASS);
