@@ -11,7 +11,7 @@
             // $DB_PASS = "";
             $DB_PORT = getenv('DB_PORT');
 
-            print_r($DB_HOST);
+            print_r($_ENV['DB_HOST']);
             print_r($DB_NAME);
             print_r($DB_USER);
             print_r($DB_PASS);
