@@ -28,8 +28,8 @@
             }
         } else if(array_filter($arrayRutas)[2] == "degrees"){
             // validar metodo de entrada get
-            print_r('hasta aqui entre');
             if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
+                print_r('hasta aqui entre despues de validar el metodo get');
 
                 $degrees = new DegreesController();
                 $degrees -> index($arrayRutas);
