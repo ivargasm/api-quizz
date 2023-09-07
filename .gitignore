@@ -1,3 +1,4 @@
 *.py
 *.xlsx
 querys.sql
+.env
