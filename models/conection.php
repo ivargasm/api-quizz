@@ -3,9 +3,9 @@
     if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '127.0.0.1') {
         $rootDirectory = $_SERVER['DOCUMENT_ROOT'] . '/api-quizz/';
     } else {
-        $rootDirectory = $_SERVER['DOCUMENT_ROOT'];
+        $rootDirectory = $_SERVER['DOCUMENT_ROOT']. '/';
     }
-    
+
     require $rootDirectory . 'vendor/autoload.php';  // Asegúrate de incluir el autoload de Composer al inicio de tu script
 
     // Carga las variables de entorno desde .env
