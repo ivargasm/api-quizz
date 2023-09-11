@@ -6,7 +6,7 @@
     // print_r(count(array_filter($arrayRutas)));
 
     // validar si se envio algo a la url
-    if(count(array_filter($arrayRutas)) == 1){
+    if(count(array_filter($arrayRutas)) == 1 || count(array_filter($arrayRutas)) == 0){
         $json=array(            
             "rutas"=>array_filter($arrayRutas),
             "detalle"=>"no encontrado 404"
