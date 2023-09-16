@@ -5,11 +5,12 @@
         public function index($data){
             $data_questions=array(            
                 "degree"=>urldecode($data[3]),
-                "topic"=>urldecode($data[4])
+                "topic"=>urldecode($data[4]),
+                "user"=>urldecode($data[5])
             );
 
-            if (isset($data[5]) && !empty($data[5])) {
-                $data_questions["partial"] = $data[5];
+            if (isset($data[6]) && !empty($data[6])) {
+                $data_questions["partial"] = $data[6];
             }
 
             // extraer los datos del modelo y enviarlos a la vista

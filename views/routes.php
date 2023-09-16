@@ -44,6 +44,15 @@
 
                 
             }
+        } else if(array_filter($arrayRutas)[2] == "users"){
+            // validar metodo de entrada get
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
+
+                $topics = new UsersController();
+                $topics -> index($arrayRutas);
+
+                
+            }
         }
         else{
             $json=array(            

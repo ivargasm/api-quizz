@@ -16,6 +16,8 @@
     require_once "models/degrees.model.php";
     require_once "controllers/topics.controller.php";
     require_once "models/topics.model.php";
+    require_once "controllers/users.controller.php";
+    require_once "models/users.model.php";
 
     $ruta = new ViewsController();
     $ruta -> index();

@@ -6,6 +6,7 @@
             static public function getQuestions($data){
                 $degree = $data["degree"];
                 $topic = $data["topic"];
+                $user = $data["user"];
                 if (isset($data["partial"]) && !empty($data["partial"])) {
                     $partial = $data["partial"];
                 }
@@ -35,6 +36,7 @@
                     JOIN questions q ON q.id = a.question_id
                     join degrees d on d.id = q.degree_id and degree_id = :degree
                     join topics t on t.id = q.topic_id and topic_id = :topic
+                    join users s on s.id = q.user_id  and q.user_id = :user
                     and partial = :partial
                     GROUP BY q.id;
                     ";  
@@ -42,6 +44,7 @@
                     $stmt->bindParam(":partial", $partial, PDO::PARAM_STR);
                     $stmt->bindParam(":degree", $degree, PDO::PARAM_STR);
                     $stmt->bindParam(":topic", $topic, PDO::PARAM_STR);
+                    $stmt->bindParam(":user", $user, PDO::PARAM_STR);
                 }else{
                     $sql = "
                     SELECT
@@ -67,11 +70,13 @@
                     JOIN questions q ON q.id = a.question_id
                     join degrees d on d.id = q.degree_id and degree_id = :degree
                     join topics t on t.id = q.topic_id and topic_id = :topic
+                    join users s on s.id = q.user_id  and q.user_id = :user
                     GROUP BY q.id;
                     ";
                     $stmt = Conexion::conectar()->prepare($sql);
                     $stmt->bindParam(":degree", $degree, PDO::PARAM_STR);
                     $stmt->bindParam(":topic", $topic, PDO::PARAM_STR);
+                    $stmt->bindParam(":user", $user, PDO::PARAM_STR);
                 }
 
                 $stmt -> execute();
