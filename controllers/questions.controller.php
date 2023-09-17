@@ -21,6 +21,11 @@
 
             foreach ($quizz as $key => $value) {
                 $answersArray = explode('|', $value['answers']);
+                
+                // Aquí reemplazamos cada cadena en el array
+                foreach($answersArray as &$answer) {
+                    $answer = str_replace("\\n", "\n", $answer);
+                }
                 $value['answers'] = $answersArray;
                 $quizz[$key] = $value;
             }
