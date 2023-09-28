@@ -36,7 +36,7 @@
                     JOIN questions q ON q.id = a.question_id
                     join degrees d on d.id = q.degree_id and degree_id = :degree
                     join topics t on t.id = q.topic_id and topic_id = :topic
-                    join users s on s.id = q.user_id  and q.user_id = :user
+                    join partners s on s.id = q.partner_id and q.partner_id = :user
                     and partial = :partial
                     GROUP BY q.id;
                     ";  
@@ -70,7 +70,7 @@
                     JOIN questions q ON q.id = a.question_id
                     join degrees d on d.id = q.degree_id and degree_id = :degree
                     join topics t on t.id = q.topic_id and topic_id = :topic
-                    join users s on s.id = q.user_id  and q.user_id = :user
+                    join partners s on s.id = q.partner_id and q.partner_id = :user
                     GROUP BY q.id;
                     ";
                     $stmt = Conexion::conectar()->prepare($sql);
