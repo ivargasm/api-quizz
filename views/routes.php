@@ -62,6 +62,15 @@
 
                 
             }
+        } else if(array_filter($arrayRutas)[2] == "email"){
+            // validar metodo de entrada get
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST"){
+
+                $email = new CorreoController();
+                $email -> enviarCorreo($arrayRutas);
+
+                
+            }
         }
         else{
             $json=array(            

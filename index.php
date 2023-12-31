@@ -20,6 +20,7 @@
     require_once "models/users.model.php";
     require_once "controllers/shopping.controller.php";
     require_once "models/shopping.model.php";
+    require_once "controllers/email.controller.php";
 
     $ruta = new ViewsController();
     $ruta -> index();
