@@ -36,7 +36,7 @@ class CorreoController {
 
         // Lógica para enviar el correo
         $asunto = 'Consulta sobre productos';
-        $mensaje = "Hola Estampalicios,\n\n";
+        $mensaje = "Hola Estampalicious,\n\n";
         $mensaje .= "Tienes un mensaje de: $nombreCliente\n";
         $mensaje .= "Que le gustaría más información sobre los siguientes productos:\n";
 
