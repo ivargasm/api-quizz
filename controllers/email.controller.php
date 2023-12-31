@@ -55,7 +55,7 @@ class CorreoController {
 
         $resend->emails->send([
             'from' => 'Acme <onboarding@resend.dev>',
-            'to' => ['ivargasm1984@gmail.com'],
+            'to' => ['ivargasm@hotmail.com'],
             'subject' => 'Shopping Cart',
             'text' => $mensaje,
             'headers' => [
