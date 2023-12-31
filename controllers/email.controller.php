@@ -44,6 +44,11 @@ class CorreoController {
             $mensaje .= "- Producto: {$producto['product']}, Color: {$producto['color']}, Talla: {$producto['size']}, Cantidad: {$producto['quantity']}\n";
         }
 
+        $mensaje .= "\nSu correo electrónico es: $correoCliente\n";
+        $mensaje .= "Su teléfono es: $telefonoCliente\n";
+        $mensaje .= "Su dirección es: $direccionCliente\n";
+        
+
         // Lógica para enviar el correo
         $resend = Resend::client($_ENV['RESEND']);
 
