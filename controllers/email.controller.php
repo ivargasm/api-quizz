@@ -47,14 +47,15 @@ class CorreoController {
         $mensaje .= "\nSu correo electrónico es: $correoCliente\n";
         $mensaje .= "Su teléfono es: $telefonoCliente\n";
         $mensaje .= "Su dirección es: $direccionCliente\n";
-        
+        $mensaje .= "\nPonte en contacto con el cliente lo antes posibe.\n";
+
 
         // Lógica para enviar el correo
         $resend = Resend::client($_ENV['RESEND']);
 
         $resend->emails->send([
             'from' => 'Acme <onboarding@resend.dev>',
-            'to' => ['ivargasm@hotmail.com'],
+            'to' => ['ivargasm1984@gmail.com'],
             'subject' => 'Shopping Cart',
             'text' => $mensaje,
             'headers' => [
