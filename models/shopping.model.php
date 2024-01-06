@@ -26,7 +26,8 @@
             join category ct on ct.category_id = p.category_id
             join genders g on g.gender_id = p.gender_id
             WHERE p.active = true
-            GROUP BY p.product_id, p.name, p.description, p.price, p.image_url, p.image_name;
+            GROUP BY p.product_id, p.name, p.description, p.price, p.image_url, p.image_name
+            order by p.product_id desc;
         ";
 
             $stmt = Conexion::conectar()->prepare($sql);
