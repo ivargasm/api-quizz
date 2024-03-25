@@ -53,6 +53,15 @@
 
                 
             }
+        } else if(array_filter($arrayRutas)[2] == "partial"){
+            // validar metodo de entrada get
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){
+
+                $topics = new PartialsController();
+                $topics -> index($arrayRutas);
+
+                
+            }
         } else if(array_filter($arrayRutas)[2] == "shopping"){
             // validar metodo de entrada get
             if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "GET"){

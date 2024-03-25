@@ -18,6 +18,8 @@
     require_once "models/topics.model.php";
     require_once "controllers/users.controller.php";
     require_once "models/users.model.php";
+    require_once "controllers/partials.controller.php";
+    require_once "models/partials.model.php";
     require_once "controllers/shopping.controller.php";
     require_once "models/shopping.model.php";
     require_once "controllers/email.controller.php";
