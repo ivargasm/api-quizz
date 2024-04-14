@@ -4,7 +4,18 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    header("Access-Control-Allow-Origin: *");  // permite las solicitudes solo desde http://localhost:5173
+    $allowedOrigins = array(
+        'https://studyquizarena.netlify.app',
+        'https://estampalicious.com',
+        // 'http://localhost:5173'
+    );
+    
+    $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+    
+    if (in_array($origin, $allowedOrigins)) {
+        header("Access-Control-Allow-Origin: $origin");
+    }
+    // header("Access-Control-Allow-Origin: https://studyquizarena.netlify.app, https://estampalicious.com, http://localhost:5173");  // permite las solicitudes solo desde http://localhost:5173
     header("Access-Control-Allow-Methods: GET"); // los métodos que quieres permitir
     header("Access-Control-Allow-Headers: Content-Type"); // otros encabezados que desees permitir
 
@@ -23,6 +34,7 @@
     require_once "controllers/shopping.controller.php";
     require_once "models/shopping.model.php";
     require_once "controllers/email.controller.php";
+    require_once "controllers/openQuestion.controller.php";
 
     $ruta = new ViewsController();
     $ruta -> index();

@@ -80,6 +80,23 @@
 
                 
             }
+        } else if(array_filter($arrayRutas)[2] == "validate_question"){
+            // validar metodo de entrada get
+            if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST"){
+
+                // recuperar del json enviado
+                $json = file_get_contents('php://input');
+                $datos = json_decode($json, true);
+
+                // extraer de datos la pregunta y la respuesta
+                $question = $datos['question'];
+                $userAnswer = $datos['userAnswer'];
+
+                $validate_question = new OpenQuestionController();
+                $validate_question -> index($question, $userAnswer);
+
+                
+            }
         }
         else{
             $json=array(            
