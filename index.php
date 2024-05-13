@@ -7,6 +7,7 @@
     $allowedOrigins = array(
         'https://studyquizarena.netlify.app',
         'https://estampalicious.com',
+        'https://studyquizarena.juristechspace.com'
         // 'http://localhost:5173'
     );
     
