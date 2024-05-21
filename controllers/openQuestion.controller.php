@@ -14,9 +14,9 @@ $dotenv->load();
             $endpoint = 'https://api.openai.com/v1/chat/completions';
 
             $data = array(
-                'model' => 'gpt-3.5-turbo',
+                'model' => 'gpt-4o',
                 'messages' => array(
-                    array("role" => "system", "content" => "Tu eres un asistente experto en analizar si la respuesta a una pregunta es o no correcta, la pregunta esta enserrada en las etiquetas <question></question> y la respuesta en las etiquetas <response></response>"),
+                    array("role" => "system", "content" => "Tu eres un asistente experto en analizar si la respuesta a una pregunta es o no correcta, si la respuesta a la pregunta es coherente la calificaras como correcta de lo contrario sera incorrecta, si a la respuesta le falta contexto con referencia a la pregunta pero esta si va bien enfocada la tomaras como correcta, pero si la respuesta incluye datos que no son correctos aun que sean pocos la respuesta sera incorrecto, la pregunta esta enserrada en las etiquetas <question></question> y la respuesta en las etiquetas <response></response>"),
                     array("role" => "user", "content" => "<question>¿Cuanto es 2 + 4?</question>: <response>6</response>"),
                     array("role" => "assistant", "content" => "correcto"),
                     array("role" => "user", "content" => "<question>".$question."</question>: <response>".$userAnswer."</response>")
