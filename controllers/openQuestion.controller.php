@@ -12,6 +12,7 @@ require $rootDirectory . 'vendor/autoload.php';  // Asegúrate de incluir el aut
 
             // $apiKey = $_ENV['OPENAI'];
             $apiKey = getenv('OPENAI');
+            print_r($apiKey);
             $endpoint = 'https://api.openai.com/v1/chat/completions';
 
             $data = array(
