@@ -3,14 +3,15 @@
 require $rootDirectory . 'vendor/autoload.php';  // Asegúrate de incluir el autoload de Composer al inicio de tu script
 
 // Carga las variables de entorno desde .env
-$dotenv = Dotenv\Dotenv::createImmutable($rootDirectory);
-$dotenv->load();
+// $dotenv = Dotenv\Dotenv::createImmutable($rootDirectory);
+// $dotenv->load();
 
     class OpenQuestionController{
 
         public function index($question, $userAnswer){
 
-            $apiKey = $_ENV['OPENAI'];
+            // $apiKey = $_ENV['OPENAI'];
+            $apiKey = getenv('OPENAI');
             $endpoint = 'https://api.openai.com/v1/chat/completions';
 
             $data = array(
