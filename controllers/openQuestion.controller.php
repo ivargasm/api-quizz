@@ -12,7 +12,11 @@ require $rootDirectory . 'vendor/autoload.php';  // Asegúrate de incluir el aut
 
             // $apiKey = $_ENV['OPENAI'];
             $apiKey = getenv('OPENAI');
-            print_r($apiKey);
+            // Opcional: Lanza un error si la variable no está definida
+            if (!$apiKey) {
+                echo json_encode(array('error' => 'API Key not found'));
+                return;
+            }
             $endpoint = 'https://api.openai.com/v1/chat/completions';
 
             $data = array(
